@@ -41,41 +41,41 @@
                                 @endif
                                 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
                                     @csrf
-                                <div class="row mb-3">
-                                        <div class="col-sm-4">
-                                            {{-- <label for="input42" class="col-sm-4 col-form-label"><strong>Name</strong></label> --}}
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="input42" class="col-sm-4 col-form-label"><strong>Name</strong></label>
                                             <div class="position-relative input-icon">
                                                 {!! Form::text('name', null, array('placeholder' => 'Enter Your Name','class' => 'form-control')) !!}
-                                                <span class="position-absolute top-50 translate-middle-y"><i class='bx bx-user'></i></span>
+                                                {{-- <span class="position-absolute top-50 translate-middle-y"><i class='bx bx-user'></i></span> --}}
                                             </div>
                                         </div>
                                     {{-- </div> --}}
                                     {{-- <div class="row mb-3"> --}}
-                                        <div class="col-sm-4">
-                                            {{-- <label for="input43" class="col-sm-4 col-form-label"><strong>Email Address</strong></label> --}}
+                                        <div class="col-md-6">
+                                            <label for="input43" class="col-sm-4 col-form-label"><strong>Email Address</strong></label>
                                             <div class="position-relative input-icon">
                                                 {!! Form::text('email', null, array('placeholder' => 'Email Address','class' => 'form-control')) !!}
-                                                <span class="position-absolute top-50 translate-middle-y"><i class='bx bx-envelope'></i></span>
+                                                {{-- <span class="position-absolute top-50 translate-middle-y"><i class='bx bx-envelope'></i></span> --}}
+                                            </div>
+                                        </div>
+                                    {{-- </div> --}}
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="input45" class="col-sm-4 col-form-label"><strong>Password</strong></label>
+                                            <div class="position-relative input-icon">
+                                                {!! Form::password('password', array('placeholder' => 'Choose Password','class' => 'form-control')) !!}
+                                                {{-- <span class="position-absolute top-50 translate-middle-y"><i class='bx bx-lock'></i></span> --}}
                                             </div>
                                         </div>
                                     {{-- </div> --}}
                                     {{-- <div class="row mb-3"> --}}
-                                        <div class="col-sm-4">
-                                            {{-- <label for="input45" class="col-sm-4 col-form-label"><strong>Password</strong></label> --}}
-                                            <div class="position-relative input-icon">
-                                                {!! Form::password('password', array('placeholder' => 'Choose Password','class' => 'form-control')) !!}
-                                                <span class="position-absolute top-50 translate-middle-y"><i class='bx bx-lock'></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-4">
-                                            {{-- <label for="input45" class="col-sm-4 col-form-label"><strong>Confirm Password</strong></label> --}}
+                                        <div class="col-md-6">
+                                            <label for="input45" class="col-sm-4 col-form-label"><strong>Confirm Password</strong></label>
                                             <div class="position-relative input-icon">
                                                 {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}                                            <span class="position-absolute top-50 translate-middle-y"><i class='bx bx-lock'></i></span>
                                             </div>
                                         </div>
-                                    {{-- </div> --}}
+                                    </div>
                                     {{-- <div class="row mb-3"> --}}
                                         <div class="col-sm-9">
                                             {{-- <label for="input46" class="col-sm-3 col-form-label">Role</label> --}}
