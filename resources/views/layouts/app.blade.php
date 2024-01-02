@@ -1,28 +1,55 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="en">
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>School Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-	{{-- CSS Files --}}
-	@include('layouts.partials.style_sheets')
+    <title>School Management</title>
+
+    <meta name="description" content="School Management">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="School Management">
+    <meta property="og:site_name" content="School Management">
+    <meta property="og:description" content="School Management">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    {{-- CSS Files --}}
+    @include('layouts.partials.style')
+
 </head>
 <body>
-	<!--wrapper-->
-	<div class="wrapper">
-		<!--sidebar wrapper -->
-			@include('layouts.partials.sidebar')
-		<!--end sidebar wrapper -->
-		<!--start header -->
-			@include('layouts.partials.header')
-		<!--end header -->
-	</div>
-		<!--start page wrapper -->
-			@yield('content')
-	{{-- Scripts Files --}}
-	@include('layouts.partials.scripts')
+    <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+
+        {{-- Side Overlay --}}
+        @include('layouts.partials.sideOverlay')
+
+        {{-- Sidebar --}}
+
+        @include('layouts.partials.sidebar')
+
+        {{-- Header --}}
+
+        @include('layouts.partials.header')
+
+        {{-- Footer --}}
+
+        @include('layouts.partials.footer')
+
+        {{-- Main Container --}}
+        @yield('content')
+
+    </div>
+
+    {{-- Scripts Files --}}
+    @include('layouts.partials.scripts')
+
+
+
 </body>
 </html>
+

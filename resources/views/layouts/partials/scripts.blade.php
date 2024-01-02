@@ -1,12 +1,7 @@
-<!-- Bootstrap JS -->
-<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-<!--plugins-->
-<script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
-<script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
-<script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
-{{-- <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script> --}}
-    <!--app JS-->
-{{-- <script src="{{ asset('assets/js/app.js')}}"></script> --}}
-@stack('page-scripts')
+<script src="{{asset('assets/js/oneui.app.min.js')}}"></script>
+
+<!-- Page JS Plugins -->
+<script src="{{asset('assets/js/plugins/chart.js/chart.umd.js')}}"></script>
+
+<!-- Page JS Code -->
+<script src="{{asset('assets/js/pages/be_pages_dashboard.min.js')}}"></script>
