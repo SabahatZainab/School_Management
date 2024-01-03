@@ -7,17 +7,27 @@
         <div class="bg-body-light">
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item">
-                        <a class="link-fx" href="javascript:void(0)">User Management</a>
-                    </li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        Users
-                    </li>
-                    </ol>
-                </nav>
+                    
+                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">
+                            <a class="link-fx" href="javascript:void(0)">Tables</a>
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                            DataTables
+                            </li>
+                        </ol>
+                    </nav>
+                    {{-- <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-1">
+                          DataTables
+                        </h1>
+                        <h2 class="fs-base lh-base fw-medium text-muted mb-0">
+                          Tables transformed with dynamic features.
+                        </h2>
+                    </div> --}}
                 </div>
+                
             </div>
         </div>
         <!-- END Hero -->
@@ -44,7 +54,6 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $user)
-                        {{-- @dd($user) --}}
                     <tr>
                         <td class="text-center fs-sm">{{ ++$i }}</td>
                         <td class="fw-semibold fs-sm">{{ $user->name }}</td>
@@ -71,23 +80,9 @@
                                 {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                 {!! Form::close() !!}
-                            {{-- <span class="text-muted fs-sm">5 days ago</span> --}}
                         </td>
                     </tr>
                     @endforeach
-                    {{-- <tr>
-                        <td class="text-center fs-sm">2</td>
-                        <td class="fw-semibold fs-sm">Brian Cruz</td>
-                        <td class="d-none d-sm-table-cell fs-sm">
-                        client2<span class="text-muted">@example.com</span>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                        <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                        </td>
-                        <td>
-                        <span class="text-muted fs-sm">9 days ago</span>
-                        </td>
-                    </tr> --}}
                     </tbody>
                 </table>
                 {!! $data->render() !!}
