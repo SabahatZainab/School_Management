@@ -1,0 +1,266 @@
+School Management Project Requirements
+
+1.	Dashboard Screen Features
+Display Total of Objects
+	
+i.	Students
+ii.	Teachers
+iii.	Parents
+iv.	Subjects
+v.	Classes
+
+2.	Sidebar/Menu
+
+i.	Dashboard
+ii.	Teachers
+iii.	Subjects
+iv.	Classes
+v.	Parents
+vi.	Students
+vii.	Attendance
+viii.	Assign Role
+ix.	Roles & Permissions
+
+3.	Header Section
+
+i.	Logo ->project name
+ii.	Profile -> dropdown(profile, logout)
+
+4.	Teachers Module Screen
+•	Teacher Module Listing (listing fields)
+i.	Name
+ii.	Email
+iii.	Subject Code
+iv.	Phone
+v.	Action (edit, delete)
+
+•	Teacher Module Create Section (create fields)
+i.	Name
+ii.	Email
+iii.	Password
+iv.	Phone
+v.	Gender -> options (Male, Female, Other)
+vi.	Date of Birth
+vii.	Current Address
+viii.	Permanent Address
+ix.	Picture->format (File)
+x.	Submit button
+
+•	Teacher Module Edit Section (update fields)
+
+i.	Name
+ii.	Email
+iii.	Password
+iv.	Phone
+v.	Gender -> options (Male, Female, Other)
+vi.	Date of Birth
+vii.	Current Address
+viii.	Permanent Address
+ix.	Picture->format (File)
+x.	Update Teacher button
+
+•	Teacher Module Delete Functionality (Simply Delete the Record).
+
+5.	Subjects Module Screen
+•	Subject Module Listing (listing fields)
+
+i.	Name
+ii.	Code
+iii.	Teacher
+iv.	Description
+v.	Action (edit, delete)
+
+
+•	Subject Module Create Section (create fields)
+i.	Subject Name
+ii.	Subject Code
+iii.	Subject Description
+iv.	Assign Teacher->dropdown (Teacher Name)
+v.	Submit button
+
+ 
+•	Subject Module Edit Section
+
+i.	Subject Name
+ii.	Subject Code
+iii.	Subject Description
+iv.	Assign Teacher->dropdown (Teacher Name)
+v.	Update button
+
+•	Subject Module Delete Functionality (Simply Delete the Record).
+
+6.	Classes Module Screen
+
+•	Classes Module Listing (listing fields)
+
+i.	Counter
+ii.	Name
+iii.	Students
+iv.	Subject Code (lists) which belongs to that particular Teacher
+v.	Teacher Name
+vi.	Action (edit, delete)
+
+•	Classes Module Create Section
+
+i.	Class Name
+ii.	Class Numeric
+iii.	Assign Teacher->dropdown (Teachers Name)
+iv.	Class Description
+v.	Submit button
+
+•	Classes Module Edit Section
+
+i.	Class Name
+ii.	Class Numeric
+iii.	Assign Teacher->dropdown (Teachers Name)
+iv.	Class Description
+v.	Submit button
+
+•	Classes Module Delete Function
+
+7.	Parent Module Screen
+•	Parent Listing Functionality ->Display Listing Fields
+
+i.	Name
+ii.	Email
+iii.	Children
+iv.	Phone
+v.	Action (Edit, Delete)
+•	Parent Create Functionality -> Creating Fields
+
+i.	Name
+ii.	Email
+iii.	Password
+iv.	Phone
+v.	Gender (Male, Female, Other)
+vi.	Current Address
+vii.	Permanent Address
+viii.	Upload Picture (File).
+•	Parent Edit Functionality -> Updating Fields
+
+i.	Display Picture Top of page
+ii.	Same Fields at the time of creation
+
+•	Delete Functionality
+
+8.	Student Module
+•	Student Module Listing
+
+i.	Name
+ii.	Email
+iii.	Password
+iv.	Roll Number
+v.	Phone
+vi.	Gender (Male, Female, Other)
+vii.	Date of Birth
+viii.	Current Address
+ix.	Permanent Address
+x.	Assign Class ->dropdown (List of Class Name, One, Two)
+xi.	Student’s Parent ->dropdown (Parents Name)
+xii.	Upload Picture (File)
+
+•	Update Student Record
+Picture Upload at top of Page, Same Fields Update (Create)
+•	View Function Same Fields Display in readonly format
+•	Delete Functionality
+
+9.	Attendance Module
+•	Screen : 1
+
+i.	Radio button, Report Label name, Class Radio name
+ii.	Dropdown Month (List of Months)
+iii.	Generate Button
+
+•	Generate Report
+•	When generate Report it shows a card which are separate class wise and shows list of students which are present or absent on specific date/month. Likewise when can’t select any month all the record generated, which is attendance of whole year.
+
+10.	Assign Role Module
+
+Assigning The Users as Parent or Student
+
+•	Listing (listing fields)
+
+i.	Name of Student
+ii.	Email
+iii.	Role
+iv.	Assign/Action -> edit
+
+•	Create User & Assign Role (+USER) Button
+i.	User Name
+ii.	User Email
+iii.	User Password
+iv.	Assign Role ->dropdown (list of roles)
+v.	Create User Button
+
+•	Edit Screen For Updating User and its Role 
+
+i.	User Name
+ii.	User Email
+iii.	User Password
+iv.	Assign Role ->dropdown (list of roles)
+v.	Update User Button
+
+
+11.	Roles and Permissions Screen
+ 
+•	Listing (listing fields)
+i.	Role 
+ii.	Permission
+iii.	Action/Edit ->edit option
+	In listing we have two buttons (+Role) and (+Permission)
+Different Dashboard Key Points
+	Different Dashboard Screen according to there roles
+	Teacher Dashboard 
+•	We have Classes, Subjects, Students Counts in which quantity is displayed.
+•	Class List count showed in which we have one button (manage attendance) we can redirect to particular class attendance page
+o	Listing fields 
+o	Student, Roll no, Action (Present, Absent ->radio button).
+o	Date Display at the top.
+•	Subject List Count (Showed Subject which specifically belong to that Teacher).
+o	Table Showed
+o	Subject Code
+o	Subject Name
+o	Teacher Name
+	Student Dashboard
+•	Students Information Display in Card
+o	Name
+o	Email
+o	Class
+o	Roll Number
+o	Phone Number
+o	Gender
+o	Date of Birth
+o	Current Address
+o	Permanent Address
+o	Student’s Parent
+o	Parent’s Email
+o	Parent’s Phone
+o	Parent’s Address
+•	Display Subjects Information which belongs to particular student in Table format
+o	Subject Code
+o	Subject Name
+o	Teacher
+•	Attendance Record which in table format
+o	Date
+o	Class
+o	Teacher
+o	Attendance Present/Absent
+	Parent Dashboard
+•	Children Details in card format
+o	Class
+o	Role
+o	Phone
+o	Gender
+o	Date of Birth
+o	Address
+o	Button -> Attendance (redirect to attendance page) -> shows attendance in table format.
+	Admin Dashboard
+•	All roles are given to an admin
+
+
+
+
+
+
+
+
