@@ -31,13 +31,13 @@
               <li class="nav-main-item">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                   <i class="nav-main-link-icon si si-layers"></i>
-                  <span class="nav-main-link-name">Users & Roles</span>
+                  <span class="nav-main-link-name">User & Role Management</span>
                 </a>
                 <ul class="nav-main-submenu">
                   <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                       <i class="nav-main-link-icon si si-bag"></i>
-                      <span class="nav-main-link-name">User</span>
+                      <span class="nav-main-link-name">Manage User</span>
                     </a>
                     <ul class="nav-main-submenu">
                       <li class="nav-main-item">
@@ -50,7 +50,7 @@
                   <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                       <i class="nav-main-link-icon si si-handbag"></i>
-                      <span class="nav-main-link-name">Roles</span>
+                      <span class="nav-main-link-name">Manage Roles</span>
                     </a>
                     <ul class="nav-main-submenu">
                       <li class="nav-main-item">
@@ -63,7 +63,7 @@
                   <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                       <i class="nav-main-link-icon si si-pencil"></i>
-                      <span class="nav-main-link-name">Permissions</span>
+                      <span class="nav-main-link-name">Manage Permissions</span>
                     </a>
                     <ul class="nav-main-submenu">
                       <li class="nav-main-item">
@@ -75,7 +75,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-main-heading">Manage Users</li>
+              {{-- <li class="nav-main-heading">Manage Users</li> --}}
               <li class="nav-main-item">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                   <i class="nav-main-link-icon si si-energy"></i>
@@ -115,7 +115,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-main-heading">Management</li>
+              {{-- <li class="nav-main-heading">Management</li> --}}
               <li class="nav-main-item">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                   <i class="nav-main-link-icon si si-wrench"></i>

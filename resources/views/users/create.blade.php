@@ -1,53 +1,57 @@
 @extends('layouts.app')
-
 @section('content')
-<!-- Labels on top -->
+
 <div class="block block-rounded">
     <div class="block-header block-header-default">
-      <h3 class="block-title">Labels on top</h3>
+      <h3 class="block-title">Create New User</h3>
     </div>
     <div class="block-content block-content-full">
       <div class="row">
-        <div class="col-lg-4">
-          <p class="fs-sm text-muted">
-            An often used layout which is very easy to create with minimal markup
-          </p>
-        </div>
-        <div class="col-lg-8 space-y-5">
-          <!-- Form Labels on top - Default Style -->
-          <form action="be_forms_layouts.html" method="POST" onsubmit="return false;">
-            <div class="mb-4">
-              <label class="form-label" for="example-ltf-email">Email</label>
-              <input type="email" class="form-control" id="example-ltf-email" name="example-ltf-email" placeholder="Your Email..">
+        <div class="col-lg-12 space-y-5">
+          @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
             </div>
-            <div class="mb-4">
-              <label class="form-label" for="example-ltf-password">Password</label>
-              <input type="password" class="form-control" id="example-ltf-password" name="example-ltf-password" placeholder="Your Password..">
-            </div>
-            <div class="mb-4">
-              <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-          </form>
-          <!-- END Form Labels on top - Default Style -->
+          @endif
+          {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
+            @csrf
+            <div class = "row g-4">
+              <div class="col-4">
+                <label for="input42" class="col-sm-4 col-form-label">Name</label>
+                {!! Form::text('name', null, array('placeholder' => 'Enter Your Name','class' => 'form-control')) !!}
+              </div>
+              <div class="col-4">
+                <label for="input43" class="col-sm-4 col-form-label">Email</label>
+                {!! Form::text('email', null, array('placeholder' => 'Email Address','class' => 'form-control')) !!}
+              </div>
+              <div class="col-4">
+                <label for="input45" class="col-sm-4 col-form-label">Password</label>
+                {!! Form::password('password', array('placeholder' => 'Choose Password','class' => 'form-control')) !!}
+              </div>
+              <div class="col-4">
+                <label for="input45" class="col-sm-4 col-form-label">Confirm</label>
+                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+              </div>
+              <div class="col-4">
+                <label for="input45" class="col-sm-4 col-form-label">Role</label>
+                {!! Form::select('roles[]', $roles, [], ['class' => 'form-control select2']) !!}
+              </div>
+              <div class="mb-4">
+                <button type="submit" class="btn btn-alt-primary px-4">Create</button>
+                <a class="btn btn-alt-danger px-4" href="{{ route('roles.index') }}">Back</a>
+              </div>
 
-          <!-- Form Labels on top - Alternative Style -->
-          <form action="be_forms_layouts.html" method="POST" onsubmit="return false;">
-            <div class="mb-4">
-              <label class="form-label" for="example-ltf-email2">Email</label>
-              <input type="email" class="form-control form-control-alt" id="example-ltf-email2" name="example-ltf-email2" placeholder="Your Email..">
             </div>
-            <div class="mb-4">
-              <label class="form-label" for="example-ltf-password2">Password</label>
-              <input type="password" class="form-control form-control-alt" id="example-ltf-password2" name="example-ltf-password2" placeholder="Your Password..">
-            </div>
-            <div class="mb-4">
-              <button type="submit" class="btn btn-dark">Login</button>
-            </div>
-          </form>
-          <!-- END Form Labels on top - Alternative Style -->
+            {!! Form::close() !!}
+
         </div>
       </div>
     </div>
   </div>
-  <!-- END Labels on top -->
+
 @endsection

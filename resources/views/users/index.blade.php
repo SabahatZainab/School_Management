@@ -11,22 +11,22 @@
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Tables</a>
+                            <a class="link-fx" href="javascript:void(0)">User Management</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                            DataTables
+                            Users
                             </li>
                         </ol>
                     </nav>
-                    {{-- <div class="flex-grow-1">
-                        <h1 class="h3 fw-bold mb-1">
-                          DataTables
-                        </h1>
-                        <h2 class="fs-base lh-base fw-medium text-muted mb-0">
-                          Tables transformed with dynamic features.
-                        </h2>
-                    </div> --}}
                 </div>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <p class="mb-0">
+                            {{ $message }}
+                        </p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+				@endif
 
             </div>
         </div>
