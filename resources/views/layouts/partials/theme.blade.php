@@ -1,16 +1,16 @@
 <div>
     <!-- Dark Mode -->
     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="dark_mode_toggle">
+   {{--  <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="dark_mode_toggle">
       <i class="far fa-moon"></i>
-    </button>
+    </button> --}}
     <!-- END Dark Mode -->
 
     <!-- Options -->
     <div class="dropdown d-inline-block ms-1">
-      <button type="button" class="btn btn-sm btn-alt-secondary" id="sidebar-themes-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{-- <button type="button" class="btn btn-sm btn-alt-secondary" id="sidebar-themes-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-brush"></i>
-      </button>
+      </button> --}}
       <div class="dropdown-menu dropdown-menu-end fs-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
         <!-- Color Themes -->
         <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->

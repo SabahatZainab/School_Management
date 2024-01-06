@@ -6,7 +6,7 @@
         <!-- Hero -->
         <div class="bg-body-light">
             <div class="content content-full">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
 
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
@@ -49,42 +49,42 @@
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                     <tr>
-                        <th class="text-center" style="width: 100px;"><i class="far fa-user"></i></th>
+                       
                         <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th style="width: 15%;">Roles</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 30%;">Action</th>
+                        <th >Email</th>
+                        <th >Roles</th>
+                        <th  >Access</th>
+                        <th >Action</th>
                     </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $user)
                     <tr>
-                        <td class="text-center fs-sm"><img class="img-avatar img-avatar48" src="{{asset('assets/media/avatars/avatar6.jpg')}}" alt=""></td>
-                        <td class="fw-semibold fs-sm">
+                       
+                        <td >
                             <a class="" href="{{ route('users.show',$user->id) }}">{{ $user->name }}</a>
                         </td>
-                        <td class="d-none d-sm-table-cell fs-sm">
+                        <td>
                             {{ $user->email }}
                         </td>
-                        <td class="d-none d-sm-table-cell fs-sm">
+                        <td>
                             @if(!empty($user->getRoleNames()))
                                 @foreach($user->getRoleNames() as $v)
-                                <label class="badge badge-success" style="color:black;">{{ $v }}</label>
+                                    {{ $v }} 
                                 @endforeach
                             @endif
                         </td>
-                        <td class="d-none d-sm-table-cell">
+                        <td >
                             @if(isset($user->status) && ($user->status == 'active'))
                                 <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Active</span>
                             @elseif(isset($user->status) && ($user->status == 'inactive'))
                                 <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>
                             @endif
                         </td>
-                        <td class="">
+                        <td >
                             {{-- <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a> --}}
                             <a class="btn btn-sm btn-alt-secondary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-pencil-alt"></i></a>
-                                {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                                {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id]]) !!}
                                     {{-- {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} --}}
                                     <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Delete">
                                         <i class="fa fa-fw fa-times"></i>

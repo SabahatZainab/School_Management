@@ -7,7 +7,7 @@
             <span class="smini-visible">
               <i class="fa fa-circle-notch text-primary"></i>
             </span>
-            <span class="smini-hide fs-5 tracking-wider">School</span>
+            <span class="smini-hide fs-5 tracking-wider ">School Management</span>
           </a>
           <!-- END Logo -->
 
@@ -35,43 +35,43 @@
                 </a>
                 <ul class="nav-main-submenu">
                   <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                      <i class="nav-main-link-icon si si-bag"></i>
+                    <a class="nav-main-link "  href="{{ route('users.index')}}">
+                      <i class="nav-main-link-icon si si-users"></i>
                       <span class="nav-main-link-name">Manage User</span>
                     </a>
-                    <ul class="nav-main-submenu">
+                    {{-- <ul class="nav-main-submenu">
                       <li class="nav-main-item">
                         <a class="nav-main-link" href="{{ route('users.index')}}">
                           <span class="nav-main-link-name">Manage Users</span>
                         </a>
                       </li>
-                    </ul>
+                    </ul> --}}
                   </li>
                   <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                      <i class="nav-main-link-icon si si-handbag"></i>
+                    <a class="nav-main-link" data-toggle="submenu"  href="{{ route('roles.index') }}">
+                      <i class="nav-main-link-icon si si-pencil"></i>
                       <span class="nav-main-link-name">Manage Roles</span>
                     </a>
-                    <ul class="nav-main-submenu">
+                   {{--  <ul class="nav-main-submenu">
                       <li class="nav-main-item">
                         <a class="nav-main-link" href="{{ route('roles.index') }}">
                           <span class="nav-main-link-name">Manage Roles</span>
                         </a>
                       </li>
-                    </ul>
+                    </ul> --}}
                   </li>
                   <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <a class="nav-main-link " data-toggle="submenu"  href="{{ route('permissions.index') }}">
                       <i class="nav-main-link-icon si si-pencil"></i>
                       <span class="nav-main-link-name">Manage Permissions</span>
                     </a>
-                    <ul class="nav-main-submenu">
+                    {{-- <ul class="nav-main-submenu">
                       <li class="nav-main-item">
                         <a class="nav-main-link" href="{{ route('permissions.index') }}">
                           <span class="nav-main-link-name">Manage Permissions</span>
                         </a>
                       </li>
-                    </ul>
+                    </ul> --}}
                   </li>
                 </ul>
               </li>

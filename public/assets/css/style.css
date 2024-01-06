@@ -1,0 +1,109 @@
+/* Default styles for larger screens */
+#page-container.sidebar-dark #sidebar .content-header {
+  background-color: #139a5226;
+}
+
+#page-container.sidebar-dark #sidebar {
+  background-color: #004225;
+}
+
+.main-link,
+.sidebar-dark #sidebar .nav-main-link {
+  color: white;
+}
+
+#page-header {
+  background-color: #004225;
+}
+
+footer .content,
+#page-container.main-content-narrow>#page-header .content,
+#page-container.main-content-narrow>#page-header .content-header {
+  width: 100%;
+}
+
+#page-container.page-header-fixed #main-container {
+  padding-top: 1rem;
+}
+
+.content {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.875rem 1.875rem 1px;
+  overflow-x: visible;
+}
+
+.content-full {
+  background: #fefffe;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  #page-container.sidebar-dark #sidebar,
+  footer .content,
+  #page-container.main-content-narrow>#page-header .content,
+  #page-container.main-content-narrow>#page-header .content-header {
+    width: 100%;
+  }
+
+  .content {
+    padding: 1.875rem;
+  }
+}
+
+/* Default table styles */
+.table.table-bordered.table-striped.table-vcenter.js-dataTable-full {
+  width: 100%;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .table.table-bordered.table-striped.table-vcenter.js-dataTable-full {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  td {
+    white-space: normal;
+  }
+}
+/* Default styles for larger screens */
+.js-dataTable-full {
+  border-collapse: collapse;
+}
+
+#DataTables_Table_0_filter {
+  float: inline-end;
+  margin-bottom: 4px
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  #DataTables_Table_0_filter {
+    float: none;
+    text-align: center; /* Center the filter input on smaller screens */
+    margin-bottom: 10px; /* Add some bottom margin for spacing */
+  }
+  #DataTables_Table_0_length {
+    float: none;
+    text-align: center; /* Center the filter input on smaller screens */
+    margin-bottom: 10px; /* Add some bottom margin for spacing */
+  }
+}
+
+.sidebar-dark #sidebar .nav-main-link>.nav-main-link-icon{
+  color: white;
+}
+.sidebar-dark #sidebar .nav-main-submenu .nav-main-link{
+  color: white;
+}
+.nav-main-link:hover{
+  color:white !important
+}
+.dark-mode #main-container .nav-main-item.open>.nav-main-submenu, .dark-mode #side-overlay .nav-main-item.open>.nav-main-submenu, .nav-main-dark .nav-main-item.open>.nav-main-submenu, .page-header-dark #page-header .nav-main-item.open>.nav-main-submenu, .sidebar-dark #sidebar .nav-main-item.open>.nav-main-submenu {
+  background-color: rgb(3 79 43);
+}
+.sidebar-dark #sidebar .nav-main-submenu .nav-main-link:hover{
+  background-color:#004225 !important
+}
