@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use Yajra\DataTables\DataTables;
 
 
 
@@ -19,15 +20,67 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    { 
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete|user-show', ['only' => ['index', 'store']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-show', ['only' => ['show']]);
+    }
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
-            
-        // $data = User::where('status','active')->orderBy('id','DESC')->paginate(5);
-        // return view('users.index',compact('data'))
-        //     ->with('i', ($request->input('page', 1) - 1) * 5);
+        if ($request->ajax()) {
+            $query = User::select('*');
+            $count = $query->count();
+
+            // Apply ordering before offset and limit
+            $query->orderBy('created_at', 'DESC');
+
+            $data = $query->offset($request->start)
+                ->limit($request->length)
+                ->get();
+
+            foreach ($data as $key => $row) {
+                $data[$key]['DT_RowIndex'] = $key + 1 + (isset($request->start) ? $request->start : 0);
+                $roles = $row->getRoleNames();
+                $data[$key]['roleName'] = isset($roles[0]) ? $roles[0] : '-';
+                if (isset($row->status) && ($row->status == 'active')) {
+                    $data[$key]['status'] = '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Active</span>';
+                } elseif (isset($row->status) && ($row->status == 'inactive')) {
+                    $data[$key]['status'] = '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>';
+                }
+                $btn = '';
+                if ($this->authorize('user-show')) {
+                    $btn .= '<a href="' . url("users/show", $row->id) . '"><i class="fa fa-1x fa-eye text-success mx-1"></i></a>';
+                }
+                if ($this->authorize('user-edit')) {
+                    $btn .= '<a href="' . url("users/edit", $row->id) . '"><i class="fa fa-1x fa-pen-to-square text-black"></i></a>';
+                }
+                if ($this->authorize('user-delete')) {
+
+                    $btn .= '<a href="#" onclick="deleteByAxios(this,' . "'" . url('users/destroy', $row->id) . "'" . ')"><i class="fa fa-1x fa-trash text-danger mx-1"></i></a>';
+                }
+                $data[$key]['action'] = $btn;
+            }
+
+            $dresponse = [
+                "draw" => isset($request->draw) ? $request->draw : 1,
+                "input" => [
+                    "draw" => isset($request->draw) ? $request->draw : 1,
+                    'start' => isset($request->start) ? (int) $request->start : 0,
+                    'length' => isset($request->length) ? (int) $request->length : 10,
+                ],
+                "recordsTotal" => $count,
+                "recordsFiltered" => $count,
+                "data" => $data
+            ];
+
+            return response()->json($dresponse);
+        }
+
+
+        return view('users.index');
     }
 
     /**
@@ -37,8 +90,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        $roles = Role::pluck('name', 'name')->all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -50,21 +103,33 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
+        try {
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|same:confirm-password',
+                'roles' => 'required'
+            ]);
 
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
+            $input = $request->all();
+            $input['password'] = Hash::make($input['password']);
 
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+            $user = User::create($input);
+            $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+            return response()->json([
+                'success' => true,
+                'data' => [$user],
+                'status' => 200,
+                'message' => 'User created successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'status' => 500,
+                'message' => 'Error creating user: ' . $e->getMessage()
+            ], 500);
+        }
     }
     public function saveData(Request $request, $id)
     {
@@ -101,14 +166,20 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    { 
         $user = User::find($id);
-        return view('users.show',compact('user'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+
+        return view('users.show', compact('user', 'roles', 'userRole'));
     }
     public function profile($id)
-    {
+    { 
         $user = User::find($id);
-        return view('profile.user',compact('user'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+
+        return view('profile.user', compact('user', 'roles', 'userRole'));
     }
 
 
@@ -121,10 +192,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -134,30 +205,47 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
-        ]);
 
-        $input = $request->all();
-        if(!empty($input['password'])){
-            $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = Arr::except($input,array('password'));
+        try {
+            $id = $request->id;
+
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'same:confirm-password',
+                'roles' => 'required'
+            ]);
+
+            $input = $request->all();
+
+            if (!empty($input['password'])) {
+                $input['password'] = Hash::make($input['password']);
+            } else {
+                $input = Arr::except($input, ['password']);
+            }
+
+            $user = User::findOrFail($id);
+            $user->update($input);
+
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+            $user->assignRole($request->input('roles'));
+
+            return response()->json([
+                'success' => true,
+                'data' => ['id' => $id],
+                'status' => 200,
+                'message' => 'User updated successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'status' => 500,
+                'message' => 'Error updating user: ' . $e->getMessage()
+            ], 500);
         }
-
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-
-        $user->assignRole($request->input('roles'));
-
-        return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
     }
 
     /**
@@ -169,17 +257,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
+
             $user = User::findOrFail($id);
-            $user->status = 'inactive';
-            $user->save();
+            $user->delete();
+            // Additional logic after updating the status, if needed 
 
-            // Additional logic after updating the status, if needed
-
-            return redirect()->route('users.index')->with('success', 'User deleted successfully');
+            return response()->json(['success' => true, 'message' => 'User Deleted Successfully'], 200);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect()->route('users.index')->with('error', 'User not found');
+
+            return response()->json(['error' => true, 'message' => 'User not found'], 202);
         } catch (\Exception $e) {
-            return redirect()->route('users.index')->with('error', 'Failed to update user status');
+            return response()->json(['error' => true, 'message' => 'Failed to update user status'], 422);
         }
 
     }

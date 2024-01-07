@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
+            $table->softDeletes(); // <-- This will add a deleted_at field
 
             $table->unique(['name', 'guard_name']);
         });
@@ -47,6 +48,8 @@ return new class extends Migration
             } else {
                 $table->unique(['name', 'guard_name']);
             }
+            $table->softDeletes(); // <-- This will add a deleted_at field
+
         });
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission, $teams) {
@@ -94,16 +97,18 @@ return new class extends Migration
                 $table->primary([$pivotRole, $columnNames['model_morph_key'], 'model_type'],
                     'model_has_roles_role_model_type_primary');
             }
+
         });
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames, $pivotRole, $pivotPermission) {
             $table->unsignedBigInteger($pivotPermission);
-            $table->unsignedBigInteger($pivotRole);
+            $table->unsignedBigInteger($pivotRole); 
 
             $table->foreign($pivotPermission)
                 ->references('id') // permission id
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
+                $table->softDeletes(); // <-- This will add a deleted_at field
 
             $table->foreign($pivotRole)
                 ->references('id') // role id

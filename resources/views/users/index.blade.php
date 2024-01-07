@@ -1,106 +1,111 @@
 @extends('layouts.app')
+@include('layouts.partials.datatables_css')
+@push('page-styles')
+@endpush
 @section('content')
-
-<div id="page-container" class="">
-    <main id="main-container">
-        <!-- Hero -->
-        <div class="bg-body-light">
-            <div class="content content-full">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-
-                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">User Management</a>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page">
-                            Users
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <p class="mb-0">
-                            {{ $message }}
-                        </p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div id="page-container" class="">
+        <main id="main-container">
+            <!-- Hero -->
+            <div class="content">
+                <div
+                    class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center text-center text-md-start">
+                    <div class="flex-grow-1 mb-1 mb-md-0">
+                        <h1 class="h3 fw-bold mb-1">
+                            Manage User Accounts
+                        </h1>
+        
                     </div>
-				@endif
-
-            </div>
-        </div>
-        <!-- END Hero -->
-
-        <!-- Page Content -->
-        <div class="content">
-            <!-- Dynamic Table Full -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Manage Users</h3>
-                    <div class="block-options">
-                        <a href="{{ route('users.create') }}" class="btn btn-sm btn-success" data-bs-toggle="tooltip" title="Create New User">
-                            <i class="fa fa-fw fa-plus"></i> Create User
-                        </a>
+                    <div class="mt-3 mt-md-0 ms-md-3 space-x-1"> 
+                            <button type="button" class="btn btn-primary me-1 mb-0"
+                                onclick="location.href='{{ url('users/create') }}';">
+                                <i class="fa fa-fw fa-plus me-1"></i> Add
+                            </button> 
                     </div>
-                </div>
-                <div class="block-content block-content-full">
-                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                    <thead>
-                    <tr>
-                       
-                        <th>Name</th>
-                        <th >Email</th>
-                        <th >Roles</th>
-                        <th  >Access</th>
-                        <th >Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $key => $user)
-                    <tr>
-                       
-                        <td >
-                            <a class="" href="{{ route('users.show',$user->id) }}">{{ $user->name }}</a>
-                        </td>
-                        <td>
-                            {{ $user->email }}
-                        </td>
-                        <td>
-                            @if(!empty($user->getRoleNames()))
-                                @foreach($user->getRoleNames() as $v)
-                                    {{ $v }} 
-                                @endforeach
-                            @endif
-                        </td>
-                        <td >
-                            @if(isset($user->status) && ($user->status == 'active'))
-                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Active</span>
-                            @elseif(isset($user->status) && ($user->status == 'inactive'))
-                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>
-                            @endif
-                        </td>
-                        <td >
-                            {{-- <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a> --}}
-                            <a class="btn btn-sm btn-alt-secondary" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-pencil-alt"></i></a>
-                                {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id]]) !!}
-                                    {{-- {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} --}}
-                                    <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Delete">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </button>
-                                {!! Form::close() !!}
-                        </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-                {!! $data->render() !!}
+        
                 </div>
             </div>
-            <!-- END Dynamic Table Full -->
-        </div>
-    </main>
-</div>
+            <!-- END Hero -->
 
+            <!-- Page Content -->
+            <div class="content">
+                <!-- Dynamic Table Full -->
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Manage Users</h3> 
+                    </div>
+                    <div class="block-content block-content-full">
+                        <table class="table table-bordered table-striped table-vcenter data-table">
+                            <thead>
+                                <tr> 
+                                    <th>SrNo</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th> 
+                                    <th>Status</th> 
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+                <!-- END Dynamic Table Full -->
+            </div>
+        </main>
+    </div>
 @endsection
+
+@push('page-scripts')
+@include('layouts.partials.datatables_scripts')
+
+<script type="text/javascript">
+ 
+    $(function() { 
+        var table = $('.data-table').DataTable({
+            "serverSide": true,
+            processing: true,
+            "autoWidth": false,
+            searching: false,
+            ajax: {
+                url: "{{ url('users') }}",
+                data: function(d) { }
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'id',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },  
+                {
+                    data: 'email',
+                    name: 'email'
+                }, 
+                {
+                    data: 'roleName',
+                    name: 'roleName'
+                }, 
+                {
+                    data: 'status',
+                    name: 'status'
+                }, 
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+
+        table.on('draw', function() {
+           
+        }); 
+    });
+</script>
+  @endpush

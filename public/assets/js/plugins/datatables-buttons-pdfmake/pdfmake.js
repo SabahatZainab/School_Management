@@ -70585,7 +70585,7 @@ function PdfPrinter(fontDescriptors) {
  * var docDefinition = {
  * 	info: {
  *		title: 'awesome Document',
- *		author: 'john doe',
+ *		author: 'Masood Arsalan',
  *		subject: 'subject of document',
  *		keywords: 'keywords for document',
  * 	},
