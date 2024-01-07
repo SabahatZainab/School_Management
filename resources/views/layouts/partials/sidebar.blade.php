@@ -48,7 +48,7 @@
                     </ul> --}}
                   </li>
                   <li class="nav-main-item">
-                    <a class="nav-main-link" data-toggle="submenu"  href="{{ route('roles.index') }}">
+                    <a class="nav-main-link"   href="{{ route('roles.index') }}">
                       <i class="nav-main-link-icon si si-pencil"></i>
                       <span class="nav-main-link-name">Manage Roles</span>
                     </a>
@@ -61,7 +61,7 @@
                     </ul> --}}
                   </li>
                   <li class="nav-main-item">
-                    <a class="nav-main-link " data-toggle="submenu"  href="{{ route('permissions.index') }}">
+                    <a class="nav-main-link "  href="{{ route('permissions.index') }}">
                       <i class="nav-main-link-icon si si-pencil"></i>
                       <span class="nav-main-link-name">Manage Permissions</span>
                     </a>
