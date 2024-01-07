@@ -51,9 +51,9 @@
                     <tr>
                        
                         <th>Name</th>
-                        <th >Email</th>
-                        <th >Roles</th>
-                        <th  >Access</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Access</th>
                         <th >Action</th>
                     </tr>
                     </thead>

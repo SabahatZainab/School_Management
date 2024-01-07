@@ -18,32 +18,26 @@
                 </ul>
             </div>
           @endif
-          {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
+          {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
             @csrf
             <div class = "row g-4">
               <div class="col-4">
-                <label for="input42" class="col-sm-4 col-form-label">Name</label>
-                {!! Form::text('name', null, array('placeholder' => 'Enter Your Name','class' => 'form-control')) !!}
+                <label for="input42" class="col-sm-4 col-form-label">Role</label>
+                {!! Form::text('name', null, array('class' => 'form-control','placeholder' => 'Enter Role')) !!}
               </div>
               <div class="col-4">
-                <label for="input43" class="col-sm-4 col-form-label">Email</label>
-                {!! Form::text('email', null, array('placeholder' => 'Email Address','class' => 'form-control')) !!}
+                <label for="input42" class="col-sm-4 col-form-label">Permission</label><br>
+                @foreach($permission as $value)
+                  <span>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
+                  {{ $value->name }}</span>
+                  <br/>
+                @endforeach
               </div>
-              <div class="col-4">
-                <label for="input45" class="col-sm-4 col-form-label">Password</label>
-                {!! Form::password('password', array('placeholder' => 'Choose Password','class' => 'form-control')) !!}
-              </div>
-              <div class="col-4">
-                <label for="input45" class="col-sm-4 col-form-label">Confirm</label>
-                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-              </div>
-              <div class="col-4">
-                <label for="input45" class="col-sm-4 col-form-label">Role</label>
-                {!! Form::select('roles[]', $roles, [], ['class' => 'form-control select2']) !!}
-              </div>
-              <div class="mb-4">
-                <button type="submit" class="btn btn-alt-primary px-4">Create</button>
-                <a class="btn btn-alt-danger px-4" href="{{ route('roles.index') }}">Back</a>
+              <div class="col-12 d-flex justify-content-end">
+                <div class="mb-4">
+                  <button type="submit" class="btn btn-alt-primary px-4">Create</button>
+                  <a class="btn btn-alt-danger px-4" href="{{ route('roles.index') }}">Back</a>
+                </div>
               </div>
 
             </div>

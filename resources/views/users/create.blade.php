@@ -41,9 +41,11 @@
                 <label for="input45" class="col-sm-4 col-form-label">Role</label>
                 {!! Form::select('roles[]', $roles, [], ['class' => 'form-control select2']) !!}
               </div>
-              <div class="mb-4">
-                <button type="submit" class="btn btn-alt-primary px-4">Create</button>
-                <a class="btn btn-alt-danger px-4" href="{{ route('roles.index') }}">Back</a>
+              <div class="col-12 d-flex justify-content-end">
+                <div class="mb-4">
+                  <button type="submit" class="btn btn-alt-primary px-4">Create</button>
+                  <a class="btn btn-alt-danger px-4 ml-2" href="{{ route('users.index') }}">Back</a>
+                </div>
               </div>
 
             </div>

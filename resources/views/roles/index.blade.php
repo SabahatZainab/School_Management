@@ -6,7 +6,7 @@
         <!-- Hero -->
         <div class="bg-body-light">
             <div class="content content-full">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
@@ -47,27 +47,27 @@
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                     <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
+                        <th>ID</th>
                         <th>Role</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 30%;">Action</th>
+                        <th>Access</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                         @foreach ($roles as $key => $role)
                     <tr>
-                        <td class="text-center fs-sm">{{ ++$i }}</td>
-                        <td class="fw-semibold fs-sm">{{ $role->name }}</td>
-                        <td class="d-none d-sm-table-cell">
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $role->name }}</td>
+                        <td>
                             @if(isset($role->status) && ($role->status == 'active'))
                                 <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Active</span>
                             @elseif(isset($role->status) && ($role->status == 'inactive'))
                                 <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>
                             @endif
                         </td>
-                        <td class="">
+                        <td>
                             <a class="btn btn-sm btn-alt-secondary" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-fw fa-pencil-alt"></i></a>
-                            {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                            {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id]]) !!}
                                 <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Delete">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>

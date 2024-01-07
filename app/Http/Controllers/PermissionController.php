@@ -38,6 +38,7 @@ class PermissionController extends Controller
         $permissions = Permission::latest()->paginate(5);
         return view('permissions.index',compact('permissions'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+            //yajra
     }
     
     /**
@@ -117,9 +118,29 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
+        // dd($permission->id);
         $permission->delete();
     
         return redirect()->route('permissions.index')
                         ->with('success','Permission deleted successfully');
+
+
+        // try {
+        //     $role = DB::table("roles")->where('id', $id)->first();
+
+           
+        //     if ($role) {
+                
+        //         DB::table("roles")->where('id', $id)->update(['status' => 'inactive']);
+
+               
+
+        //         return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
+        //     } else {
+        //         return redirect()->route('roles.index')->with('error', 'Role not found');
+        //     }
+        // } catch (\Exception $e) {
+        //     return redirect()->route('roles.index')->with('error', 'Failed to update role status');
+        // }
     }
 }
